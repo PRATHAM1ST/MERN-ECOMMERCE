@@ -1,19 +1,17 @@
 import { useState } from "react";
 
-function App() {
-  const [name, setName] = useState("");
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function registerUser(event) {
+  async function loginUser(event) {
     event.preventDefault();
-    const response = await fetch('http://localhost:3001/api/register/', {
+    const response = await fetch('http://localhost:3001/api/login/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: name,
         email: email,
         password : password
       }),
@@ -27,15 +25,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Register</h1>
-      <form onSubmit={registerUser}>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          type="text"
-          placeholder="Name"
-          required
-        />
+      <h1>Login</h1>
+      <form onSubmit={loginUser}>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -56,4 +47,4 @@ function App() {
   );
 }
 
-export default App;
+export default Login;
